@@ -1,0 +1,16 @@
+@import url('./reset.css');
+@import url('./styles.css');
+
+.gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+
+  padding: 0 156px;
+}
+
+.gallery-image{
+  width: 360px;
+}

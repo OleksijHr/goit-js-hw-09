@@ -33,5 +33,7 @@ galleryContainer.insertAdjacentHTML('beforeend', galleryCardsSet);
 const lightbox = new SimpleLightbox('.gallery a', {
   caption: true,
   captionsData: 'alt',
-  captionDelay: 250,
+    captionDelay: 250,
+    showCounter: false,
+    // overlay: true,
 });

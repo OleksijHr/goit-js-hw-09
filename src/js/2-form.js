@@ -11,7 +11,7 @@ const user = {
     message: "",
 };
 
-form.addEventListener("input", onTextareaInput);
+form.addEventListener("input", onFormsInput);
 form.addEventListener("submit", handleSubmit);
 
 populateTextarea();
@@ -24,24 +24,28 @@ function handleSubmit(event) {
 
     localStorage.removeItem(localStorageKey);
     event.target.reset();
-}
+};
 
 
-function populateTextarea(event) {
-    const savedEmail = localStorage.getItem(localStorageKey, user.email);
-    const savedMessage = localStorage.getItem(localStorageKey, user.message);
+function populateTextarea() {
+    const savedUser = localStorage.getItem(localStorageKey, user);
 
-    if (savedEmail && savedMessage) {
-        emailInput.value = JSON.parse(savedEmail).email;
-        feedbackMessage.value = JSON.parse(savedMessage).message;
-    }
-}
+    if (emailInput.value === "" && feedbackMessage.value === "") {
+         if (savedUser) {
+            emailInput.value = JSON.parse(savedUser).email;
+            feedbackMessage.value = JSON.parse(savedUser).message;
+             
+             user.email = JSON.parse(savedUser).email;
+             user.message = JSON.parse(savedUser).message;
+        };
+    }; 
+};
 
 
 
-function onTextareaInput(event) {
-    user.email = event.currentTarget.elements.email.value;
-    user.message = event.currentTarget.elements.message.value;
+function onFormsInput(event) {
+    user.email = event.currentTarget.elements.email.value.trim();
+    user.message = event.currentTarget.elements.message.value.trim();
 
     localStorage.setItem(localStorageKey, JSON.stringify(user));
-}
+};

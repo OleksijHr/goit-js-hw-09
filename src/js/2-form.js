@@ -14,20 +14,22 @@ const user = {
 form.addEventListener("input", onFormsInput);
 form.addEventListener("submit", handleSubmit);
 
-populateTextarea();
+populateFormFields();
 
 
 function handleSubmit(event) {
     event.preventDefault();
 
-    console.log(user);
+    if (emailInput.value !== "" && feedbackMessage.value !== "") {
+        console.log(user);
+    }
 
     localStorage.removeItem(localStorageKey);
     event.target.reset();
 };
 
 
-function populateTextarea() {
+function populateFormFields() {
     const savedUser = localStorage.getItem(localStorageKey, user);
 
     if (emailInput.value === "" && feedbackMessage.value === "") {
